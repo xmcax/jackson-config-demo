@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.11.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+group = 'pl.adamnowicki'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web:1.5.11.RELEASE')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.0')
+
+	// In java9 jaxb is not bundled into JDK
+	compile('javax.xml.bind:jaxb-api:2.2.11')
+	compile('com.sun.xml.bind:jaxb-core:2.2.11')
+	compile('com.sun.xml.bind:jaxb-impl:2.2.11')
+
+	// test
+	testCompile('org.springframework.boot:spring-boot-starter-test:1.5.11.RELEASE')
+	testCompile('org.assertj:assertj-core:2.6.0')
+	testCompile('com.jayway.restassured:rest-assured:2.9.0')
+}
